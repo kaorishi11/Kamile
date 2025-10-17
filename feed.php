@@ -42,21 +42,23 @@ $postagens = $conn->query("
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
         body {
-            background: #0f172a;
-            color: white;
+            background-color: #0f1720;
+            color: #fff;
             font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
-        header {
-            background: #1e293b;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            }
+            header {
+            width: 100%;
+            background: #0b1220;
+            color: #ff6b6b;
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            padding: 15px 25px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.3);
-        }
+            padding: 10px 30px;
+            }
         header h1 { color: #ff4d4d; }
+        
         nav a {
             color: white;
             margin-left: 15px;
@@ -70,7 +72,7 @@ $postagens = $conn->query("
             margin-bottom: 25px;
         }
         .nova textarea {
-            width: 100%;
+            width: 95%;
             min-height: 70px;
             padding: 10px;
             border-radius: 8px;
