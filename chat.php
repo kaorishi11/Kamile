@@ -19,14 +19,12 @@ $conn->query("UPDATE usuarios SET ultimo_ativo = NOW() WHERE id = $uid");
     <title>Chat - Kamile</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        /* layout principal */
         .container {
             display: flex;
             flex: 1;
             width: 100%;
             overflow: hidden;
         }
-
         .sidebar {
             width: 280px;
             background: var(--card);
@@ -34,13 +32,11 @@ $conn->query("UPDATE usuarios SET ultimo_ativo = NOW() WHERE id = $uid");
             padding: 15px;
             overflow-y: auto;
         }
-
         .sidebar h2 {
             font-size: 18px;
             color: var(--accent);
             margin-bottom: 10px;
         }
-
         .user {
             padding: 10px;
             border-radius: 6px;
@@ -51,9 +47,7 @@ $conn->query("UPDATE usuarios SET ultimo_ativo = NOW() WHERE id = $uid");
             justify-content: space-between;
             transition: background 0.2s;
         }
-
         .user:hover { background: rgba(255,255,255,0.05); }
-
         .online-dot {
             width: 10px;
             height: 10px;
@@ -61,7 +55,6 @@ $conn->query("UPDATE usuarios SET ultimo_ativo = NOW() WHERE id = $uid");
             border-radius: 50%;
             margin-right: 8px;
         }
-
         .user span {
             flex: 1;
         }
@@ -77,7 +70,6 @@ $conn->query("UPDATE usuarios SET ultimo_ativo = NOW() WHERE id = $uid");
             text-align: center;
             font-weight: bold;
         }
-
         .chat {
             flex: 1;
             display: flex;

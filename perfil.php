@@ -91,6 +91,57 @@ $result_posts = $postagens->get_result();
     <meta charset="UTF-8">
     <title>Perfil - Kamile</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h3 {
+    text-align: center;
+    margin: 30px 0 10px;
+}
+
+/* Container das postagens */
+.posts-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px; /* espaçamento entre os cards */
+    width: 100%;
+    max-width: 1000px; /* limita a largura total */
+    margin: 0 auto;
+}
+
+/* Cada postagem individual */
+.post {
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 0 8px rgba(0,0,0,0.1);
+    width: 500px; /* largura fixa dos cards */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.post textarea {
+    width: 100%;
+    resize: none;
+    border-radius: 5px;
+    padding: 8px;
+    border: 1px solid #ccc;
+}
+
+.post img {
+    width: 100%;
+    border-radius: 8px;
+    margin: 10px 0;
+    object-fit: cover;
+}
+
+
+    </style>
 </head>
 <body>
 <header>
@@ -120,24 +171,26 @@ $result_posts = $postagens->get_result();
 
     <h3>Minhas Publicações</h3>
 
-    <?php while($p = $result_posts->fetch_assoc()): ?>
-        <div class="post">
-            <form method="POST" enctype="multipart/form-data">
-                <input type="hidden" name="acao" value="postagem">
-                <input type="hidden" name="post_id" value="<?= $p['id'] ?>">
-                <small>Publicado em: <?= htmlspecialchars($p['data_publicacao']) ?></small>
-                <textarea name="conteudo" rows="3"><?= htmlspecialchars($p['conteudo']) ?></textarea>
-                
-                <?php if (!empty($p['imagem'])): ?>
-                    <img src="<?= htmlspecialchars($p['imagem']) ?>" alt="Imagem da postagem">
-                <?php endif; ?>
+    <div class="posts-container">
+        <?php while($p = $result_posts->fetch_assoc()): ?>
+            <div class="post">
+                <form method="POST" enctype="multipart/form-data">
+                    <input type="hidden" name="acao" value="postagem">
+                    <input type="hidden" name="post_id" value="<?= $p['id'] ?>">
+                    <small>Publicado em: <?= htmlspecialchars($p['data_publicacao']) ?></small>
+                    <textarea name="conteudo" rows="3"><?= htmlspecialchars($p['conteudo']) ?></textarea>
+                    
+                    <?php if (!empty($p['imagem'])): ?>
+                        <img src="<?= htmlspecialchars($p['imagem']) ?>" alt="Imagem da postagem">
+                    <?php endif; ?>
 
-                <input type="file" name="foto_post">
-                <button type="submit">Salvar Postagem</button>
-                <a href="excluir_post.php?id=<?= $p['id'] ?>" style="color:#ff6b6b;">Excluir</a>
-            </form>
-        </div>
-    <?php endwhile; ?>
+                    <input type="file" name="foto_post">
+                    <button type="submit" style="margin-left: 20px;">Salvar Postagem</button>
+                    <a href="excluir_post.php?id=<?= $p['id']?>" style="margin-left: 200px;">Excluir</a>
+                </form>
+            </div>
+        <?php endwhile; ?>
+    </div>
 
     <?php if (!empty($erro)) echo "<p class='erro'>$erro</p>"; ?>
 </main>
