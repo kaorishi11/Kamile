@@ -52,6 +52,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <link rel="stylesheet" href="style.css">
     <title>Kamile - Cadastro</title>
+    <style>
+        body{
+            padding: 200px 200px;
+        }
+        h1{
+            color: #ff6b6b;
+            text-align: center;
+        }
+    </style>
 </head>
     <body>
     <h1>Kamile</h1>

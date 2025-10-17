@@ -92,54 +92,102 @@ $result_posts = $postagens->get_result();
     <title>Perfil - Kamile</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        main {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+       main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-h3 {
-    text-align: center;
-    margin: 30px 0 10px;
+h3, h2 {
+  text-align: center;
+  margin: 20px 0 10px;
+  color: #ff6b6b;
 }
 
 /* Container das postagens */
 .posts-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px; /* espaçamento entre os cards */
-    width: 100%;
-    max-width: 1000px; /* limita a largura total */
-    margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 25px;
+  width: 100%;
+  max-width: 1100px;
+  margin: 20px auto;
 }
 
-/* Cada postagem individual */
+/* Cada post */
 .post {
-    border-radius: 10px;
-    padding: 15px;
-    box-shadow: 0 0 8px rgba(0,0,0,0.1);
-    width: 500px; /* largura fixa dos cards */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  background: #0b1220;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(255, 107, 107, 0.2);
+  width: 320px;
+  text-align: center;
+}
+
+.post small {
+  display: block;
+  color: #bbb;
+  margin-bottom: 8px;
 }
 
 .post textarea {
-    width: 100%;
-    resize: none;
-    border-radius: 5px;
-    padding: 8px;
-    border: 1px solid #ccc;
+  width: 100%;
+  resize: none;
+  border-radius: 6px;
+  border: none;
+  background: #fff;
+  color: #000;
+  padding: 8px;
+  margin-bottom: 10px;
+  transition: 0.3s;
 }
 
+.post textarea:focus {
+  border: 1px solid #ff6b6b;
+  box-shadow: 0 0 6px rgba(255,107,107,0.5);
+}
+
+/* Imagem da postagem */
 .post img {
-    width: 100%;
-    border-radius: 8px;
-    margin: 10px 0;
-    object-fit: cover;
+  width: 100%;
+  max-height: 220px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin: 10px 0;
 }
 
+/* Input de upload */
+.post input[type="file"] {
+  margin-top: 10px;
+  width: 100%;
+  color: #fff;
+}
+
+/* Botões */
+.post button, .post a {
+  display: inline-block;
+  background: linear-gradient(145deg, #ff6b6b, #c53030);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 30px;
+  text-decoration: none;
+  border: none;
+  font-weight: bold;
+  margin: 10px 5px 0;
+  transition: 0.3s;
+  box-shadow: 0 4px 8px rgba(255, 107, 107, 0.3);
+}
+
+.post button:hover, .post a:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(255, 107, 107, 0.5);
+}
+
+/* Corrige botão de excluir */
+.post a {
+  background: linear-gradient(145deg, #e11d48, #9f1239);
+}
 
     </style>
 </head>
@@ -158,13 +206,14 @@ h3 {
         <h2>Meu Perfil</h2>
         <form method="POST" enctype="multipart/form-data">
             <input type="hidden" name="acao" value="perfil">
-            <label>Nome:</label>
-            <input type="text" name="nome" value="<?= htmlspecialchars($usuario['nome']) ?>" required>
             <label>Foto de Perfil:</label>
             <input type="file" name="foto">
             <?php if (!empty($usuario['foto'])): ?>
-                <img src="<?= htmlspecialchars($usuario['foto']) ?>" width="120" style="border-radius:50%;margin-top:10px;">
+                <img src="<?= htmlspecialchars($usuario['foto']) ?>" width="120" style="border-radius:100%;margin-top:10px; margin-bottom:30px;" alt="Foto de Perfil">
             <?php endif; ?>
+
+            <input type="text" name="nome" value="<?= htmlspecialchars($usuario['nome']) ?>" required>
+           
             <button type="submit">Salvar Alterações</button>
         </form>
     </div>
@@ -185,8 +234,8 @@ h3 {
                     <?php endif; ?>
 
                     <input type="file" name="foto_post">
-                    <button type="submit" style="margin-left: 20px;">Salvar Postagem</button>
-                    <a href="excluir_post.php?id=<?= $p['id']?>" style="margin-left: 200px;">Excluir</a>
+                    <button type="submit" >Salvar Postagem</button>
+                    <a href="excluir_post.php?id=<?= $p['id']?>">Excluir</a>
                 </form>
             </div>
         <?php endwhile; ?>
